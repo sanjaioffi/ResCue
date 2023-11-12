@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:rescue/app_colors.dart';
+import 'package:rescue/constants/app_colors.dart';
 import 'package:rescue/screens/onboarding/login_page.dart';
 import 'package:rescue/screens/onboarding/signup_page.dart';
 
@@ -19,7 +19,7 @@ class OnboardingScreen extends StatelessWidget {
                 height: 40,
               ),
               const Text(
-                'Mood Mapper',
+                'ResCue',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     color: Colors.black,
@@ -27,7 +27,7 @@ class OnboardingScreen extends StatelessWidget {
                     fontWeight: FontWeight.bold),
               ),
               const Text(
-                'Explore the Power of Words.',
+                'Turning Panic Into Protection',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     color: AppColor.grey,
@@ -35,7 +35,7 @@ class OnboardingScreen extends StatelessWidget {
                     fontWeight: FontWeight.w500),
               ),
               const SizedBox(height: 10),
-              // Lottie.asset('assets/images/mood-1.json'),
+              Lottie.asset('assets/images/welcome.json'),
               const SizedBox(height: 10),
               // Row(
               //   mainAxisAlignment: MainAxisAlignment.spaceAround,

@@ -10,7 +10,7 @@ import 'package:rescue/screens/onboarding/emergecy_contacts.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../app_colors.dart';
+import '../../constants/app_colors.dart';
 import '../../getx/uid_controller.dart';
 
 class SignUpPage2 extends StatelessWidget {

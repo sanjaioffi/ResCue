@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         useMaterial3: true,
       ),
-      home: uid == null ? ChatBotScreen() : MainScreen(),
+      home: uid == null ? OnboardingScreen() : MainScreen(),
     );
   }
 }

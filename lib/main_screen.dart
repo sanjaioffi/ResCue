@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:rescue/app_colors.dart';
+import 'package:rescue/constants/app_colors.dart';
 import 'package:rescue/controller/location_controller.dart';
 import 'package:rescue/screens/mainscreens/chat_bot_screen.dart';
 import 'package:rescue/screens/mainscreens/home.dart';
@@ -43,9 +43,11 @@ class MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        Get.to(() => ChatBotScreen());
-      }),
+      floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.message),
+          onPressed: () {
+            Get.to(() => ChatBotScreen());
+          }),
       body: currentScreen,
       bottomNavigationBar: BottomAppBar(
         color: AppColor.white,

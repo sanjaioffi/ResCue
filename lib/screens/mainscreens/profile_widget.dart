@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rescue/app_colors.dart';
+import 'package:rescue/constants/app_colors.dart';
 import 'package:rescue/getx/user_controller.dart';
 
 class ProfileScreenTile extends StatelessWidget {

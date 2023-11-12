@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:rescue/app_colors.dart';
+import 'package:rescue/constants/app_colors.dart';
 import 'package:rescue/screens/onboarding/login_page.dart';
 import 'package:rescue/screens/onboarding/signup_page_2.dart';
 
@@ -90,7 +90,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         fontWeight: FontWeight.bold))),
           ),
           const SizedBox(height: 10),
-          // Lottie.asset('assets/images/register.json'),
+          Lottie.asset('assets/images/welcome.json'),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Container(

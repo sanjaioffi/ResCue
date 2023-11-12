@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rescue/getx/user_controller.dart';
 import 'package:rescue/screens/mainscreens/profile_widget.dart';
+import 'package:rescue/screens/onboarding/onboarding_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -107,7 +109,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 subtitle: "About the app",
               ),
               ProfileScreenTile(
-                function: () {},
+                function: () {
+                  Get.to(() => OnboardingScreen());
+                              SharedPreferences.getInstance().then((prefs) {
+                                prefs.remove('uid');
+                              });
+
+                },
                 tileIcon: Icons.logout_outlined,
                 title: "Logout",
                 subtitle: "Logout from the app",

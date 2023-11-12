@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:rescue/Database/login_curd.dart';
 
-import '../../app_colors.dart';
+import '../../constants/app_colors.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -32,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
                         fontWeight: FontWeight.bold))),
           ),
           const SizedBox(height: 10),
-          // Lottie.asset('assets/images/register.json'),
+          Lottie.asset('assets/images/welcome.json'),
           const SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
