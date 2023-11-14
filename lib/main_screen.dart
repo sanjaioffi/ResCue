@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:rescue/constants/app_colors.dart';
 import 'package:rescue/controller/location_controller.dart';
 import 'package:rescue/screens/mainscreens/chat_bot_screen.dart';
@@ -10,8 +7,6 @@ import 'package:rescue/screens/mainscreens/home.dart';
 import 'package:rescue/screens/mainscreens/news_screen.dart';
 import 'package:rescue/screens/mainscreens/profile_screen.dart';
 import 'package:rescue/screens/mainscreens/evacuation_screen.dart';
-
-import 'screens/llm/palm_service.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -21,22 +16,15 @@ class MainScreen extends StatefulWidget {
 }
 
 class MainScreenState extends State<MainScreen> {
-  // Properties & Variables needed
-
-  int currentTab = 0; // to keep track of active tab index
+  int currentTab = 0;
 
   final PageStorageBucket bucket = PageStorageBucket();
-  Widget currentScreen = const HomeScreen(); // Our first view in viewport
-  /// Determine the current position of the device.
-  ///
-  /// When the location services are not enabled or permissions
-  /// are denied the `Future` will return an error.
+  Widget currentScreen = const HomeScreen();
 
   @override
   void initState() {
     Get.find<LocationController>().getLocation();
 
-    // TODO: implement initState
     super.initState();
   }
 
@@ -44,9 +32,9 @@ class MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.message),
+          child: const Icon(Icons.message),
           onPressed: () {
-            Get.to(() => ChatBotScreen());
+            Get.to(() => const ChatBotScreen());
           }),
       body: currentScreen,
       bottomNavigationBar: BottomAppBar(
@@ -62,8 +50,7 @@ class MainScreenState extends State<MainScreen> {
                 minWidth: 30,
                 onPressed: () {
                   setState(() {
-                    currentScreen =
-                        const HomeScreen(); // if user taps on this dashboard tab will be active
+                    currentScreen = const HomeScreen();
                     currentTab = 0;
                   });
                 },
@@ -90,8 +77,7 @@ class MainScreenState extends State<MainScreen> {
                 minWidth: 30,
                 onPressed: () {
                   setState(() {
-                    currentScreen =
-                        NewsScreen(); // if user taps on this dashboard tab will be active
+                    currentScreen = NewsScreen();
                     currentTab = 1;
                   });
                 },
@@ -119,8 +105,7 @@ class MainScreenState extends State<MainScreen> {
                 minWidth: 30,
                 onPressed: () {
                   setState(() {
-                    currentScreen =
-                        EvacuationScreen(); // if user taps on this dashboard tab will be active
+                    currentScreen = const EvacuationScreen();
                     currentTab = 2;
                   });
                 },
@@ -146,8 +131,7 @@ class MainScreenState extends State<MainScreen> {
                 minWidth: 30,
                 onPressed: () {
                   setState(() {
-                    currentScreen =
-                        ProfileScreen(); // if user taps on this dashboard tab will be active
+                    currentScreen = const ProfileScreen();
                     currentTab = 3;
                   });
                 },
@@ -169,8 +153,6 @@ class MainScreenState extends State<MainScreen> {
                   ],
                 ),
               ),
-
-              // Right Tab bar icons
             ],
           ),
         ),

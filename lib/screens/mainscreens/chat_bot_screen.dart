@@ -1,19 +1,24 @@
+import 'dart:ffi';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:rescue/constants/app_colors.dart';
 import 'package:rescue/screens/llm/palm_service.dart';
 
 class ChatBotScreen extends StatefulWidget {
+  const ChatBotScreen({super.key});
+
   @override
   _ChatBotScreenState createState() => _ChatBotScreenState();
 }
 
 class _ChatBotScreenState extends State<ChatBotScreen> {
   final TextEditingController _textController = TextEditingController();
+  bool isLoading = false;
   final List<ChatMessage> _messages = [];
   String output = '';
 
   void _handleSubmitted(String text) {
-    _textController.clear();
     ChatMessage message = ChatMessage(
       text: text,
       isUserMessage: true,
@@ -21,36 +26,39 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
     setState(() {
       _messages.insert(0, message);
     });
-        if (kDebugMode) {
-          print('stsrted');
-        }
-    makeApiRequest('i went for a vacation');
+    if (kDebugMode) {
+      print('stsrted');
+    }
 
-    // Simulate a response from the chatbot (you would replace this with actual logic)
     _handleBotResponse();
   }
 
   void _handleBotResponse() async {
-
-
+    setState(() {
+      isLoading = true;
+    });
+    print({'text': _textController.text});
     output = await makeApiRequest(_textController.text);
+    print(output);
 
- 
-      ChatMessage message = ChatMessage(
-        text: output,
-        isUserMessage: false,
-      );
-      setState(() {
-        _messages.insert(0, message);
-      });
-   
+    ChatMessage message = ChatMessage(
+      text: output,
+      isUserMessage: false,
+    );
+    setState(() {
+      _messages.insert(0, message);
+    });
+    _textController.clear();
+    setState(() {
+      isLoading = false;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ChatBot'),
+        title: const Text('ChatBot'),
       ),
       body: Column(
         children: <Widget>[
@@ -61,12 +69,20 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
               itemBuilder: (context, index) => _messages[index],
             ),
           ),
-          Divider(height: 1.0),
+          const Divider(height: 1.0),
           Container(
             decoration: BoxDecoration(
               color: Theme.of(context).cardColor,
             ),
-            child: _buildTextComposer(),
+            child: isLoading
+                ? const Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: 15.0,
+                      horizontal: 5.0,
+                    ),
+                    child: LinearProgressIndicator(),
+                  )
+                : _buildTextComposer(),
           ),
         ],
       ),
@@ -82,13 +98,13 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
             child: TextField(
               controller: _textController,
               onSubmitted: _handleSubmitted,
-              decoration: InputDecoration.collapsed(
+              decoration: const InputDecoration.collapsed(
                 hintText: 'Send a message',
               ),
             ),
           ),
           IconButton(
-            icon: Icon(Icons.send),
+            icon: const Icon(Icons.send),
             onPressed: () => _handleSubmitted(_textController.text),
           ),
         ],
@@ -113,22 +129,35 @@ class ChatMessage extends StatelessWidget {
           isUserMessage
               ? Container(
                   margin: const EdgeInsets.only(right: 16.0),
-                  child: CircleAvatar(
+                  child: const CircleAvatar(
                     child: Icon(Icons.person),
                   ),
                 )
-              : Container(),
+              : Container(
+                  margin: const EdgeInsets.only(right: 16.0),
+                  child: const CircleAvatar(
+                    child: Icon(Icons.rocket),
+                  ),
+                ),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
                   isUserMessage ? 'You' : 'ChatBot',
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
                 Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5.0),
+                    color:
+                        isUserMessage ? AppColor.isabelline : AppColor.teaGreen,
+                  ),
                   margin: const EdgeInsets.only(top: 5.0),
-                  child: Text(text),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(text),
+                  ),
                 ),
               ],
             ),

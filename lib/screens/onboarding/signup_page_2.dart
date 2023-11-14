@@ -65,8 +65,8 @@ class SignUpPage2 extends StatelessWidget {
               ),
               child: TextFormField(
                 controller: name,
-                decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.symmetric(
+                decoration: const InputDecoration(
+                  contentPadding: EdgeInsets.symmetric(
                       vertical: 15.0, horizontal: 20.0),
                   prefixIcon: Icon(Icons.person, color: Colors.grey),
                   hintText: 'Enter Your Name',
@@ -92,8 +92,8 @@ class SignUpPage2 extends StatelessWidget {
               ),
               child: TextFormField(
                 controller: age,
-                decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.symmetric(
+                decoration: const InputDecoration(
+                  contentPadding: EdgeInsets.symmetric(
                       vertical: 15.0, horizontal: 20.0),
                   prefixIcon: Icon(Icons.person_2, color: Colors.grey),
                   hintText: 'Enter Your Age',
@@ -119,8 +119,8 @@ class SignUpPage2 extends StatelessWidget {
               ),
               child: TextFormField(
                 controller: emailId,
-                decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.symmetric(
+                decoration: const InputDecoration(
+                  contentPadding: EdgeInsets.symmetric(
                       vertical: 15.0, horizontal: 20.0),
                   prefixIcon: Icon(Icons.home, color: Colors.grey),
                   hintText: 'Enter Your Email ID',
@@ -147,8 +147,8 @@ class SignUpPage2 extends StatelessWidget {
               child: TextFormField(
                 maxLines: 5,
                 controller: homeAddress,
-                decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.symmetric(
+                decoration: const InputDecoration(
+                  contentPadding: EdgeInsets.symmetric(
                       vertical: 15.0, horizontal: 20.0),
                   prefixIcon: Icon(Icons.home, color: Colors.grey),
                   hintText: 'Enter Your Home Address',
@@ -175,8 +175,8 @@ class SignUpPage2 extends StatelessWidget {
               child: TextFormField(
                 maxLines: 5,
                 controller: workAddress,
-                decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.symmetric(
+                decoration: const InputDecoration(
+                  contentPadding: EdgeInsets.symmetric(
                       vertical: 15.0, horizontal: 20.0),
                   prefixIcon: Icon(Icons.work, color: Colors.grey),
                   hintText: 'Enter Your Work Address',
@@ -222,7 +222,7 @@ class SignUpPage2 extends StatelessWidget {
                 print(
                     'Update successfully....................................................................................................................................................');
                 Navigator.push(context, MaterialPageRoute(builder: (_) {
-                  return EmergencyContactPage();
+                  return const EmergencyContactPage();
                 }));
               },
               child: Container(

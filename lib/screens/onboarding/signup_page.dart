@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -65,8 +67,10 @@ class _SignUpPageState extends State<SignUpPage> {
               this.verificationId = verificationId;
             });
           },
-          timeout: Duration(seconds: 45));
-    } catch (e) {}
+          timeout: const Duration(seconds: 45));
+    } catch (e) {
+      print(e.toString());
+    }
   }
 
   // Enable the button again after 60 seconds
@@ -114,9 +118,9 @@ class _SignUpPageState extends State<SignUpPage> {
                       // maxLength: 10,
                       keyboardType: TextInputType.phone,
                       controller: phoneController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         prefix: Text('+91 '),
-                        contentPadding: const EdgeInsets.symmetric(
+                        contentPadding: EdgeInsets.symmetric(
                             vertical: 15.0, horizontal: 20.0),
                         prefixIcon: Icon(Icons.phone, color: Colors.grey),
                         hintText: 'Phone number',
@@ -143,20 +147,20 @@ class _SignUpPageState extends State<SignUpPage> {
                           showLoadingDialog(
                               context, 'Sending OTP to your phone number');
                           // Simulate a time-consuming task
-                          await Future.delayed(Duration(seconds: 2));
+                          await Future.delayed(const Duration(seconds: 2));
 
                           // Close the dialog when the task is done
                           Navigator.of(context).pop();
                           _signInWithMobileNumber();
                         }
                       },
-                      child: Text(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColor.teaGreen),
+                      child: const Text(
                         'Send OTP',
                         style: TextStyle(
                             fontSize: 12, fontWeight: FontWeight.bold),
                       ),
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColor.teaGreen),
                     ),
                   ),
                 ],
@@ -164,10 +168,10 @@ class _SignUpPageState extends State<SignUpPage> {
             ),
           ),
           loading
-              ? Column(
+              ? const Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      padding: EdgeInsets.symmetric(horizontal: 20.0),
                       child: LinearProgressIndicator(),
                     ),
                     Text(
@@ -176,7 +180,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                   ],
                 )
-              : SizedBox(),
+              : const SizedBox(),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Container(
@@ -196,8 +200,8 @@ class _SignUpPageState extends State<SignUpPage> {
                 // maxLength: 10,
                 keyboardType: TextInputType.phone,
                 controller: otpController,
-                decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.symmetric(
+                decoration: const InputDecoration(
+                  contentPadding: EdgeInsets.symmetric(
                       vertical: 15.0, horizontal: 20.0),
                   prefixIcon: Icon(Icons.vpn_key, color: Colors.grey),
                   hintText: 'OTP',
@@ -258,18 +262,18 @@ class _SignUpPageState extends State<SignUpPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Mobile Number Already Registered'),
+          title: const Text('Mobile Number Already Registered'),
           content:
-              Text('This mobile number is already registered. Please log in.'),
+              const Text('This mobile number is already registered. Please log in.'),
           actions: <Widget>[
             TextButton(
-              child: Text('OK'),
+              child: const Text('OK'),
               onPressed: () {
                 // Navigate to the login page or any other page as needed
                 Navigator.of(context).pop(); // Close the dialog
                 Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (_) {
-                  return LoginPage();
+                  return const LoginPage();
                 }));
               },
             ),
@@ -297,8 +301,8 @@ class _SignUpPageState extends State<SignUpPage> {
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              CircularProgressIndicator(), // Loading spinner
-              SizedBox(height: 16),
+              const CircularProgressIndicator(), // Loading spinner
+              const SizedBox(height: 16),
               Text(message), // Loading message
             ],
           ),

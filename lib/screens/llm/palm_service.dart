@@ -34,6 +34,8 @@ Future<String> makeApiRequest(String text) async {
     'prompt': {'text': text}
   };
 
+  print(body);
+
   try {
     // Make the POST request
     final response = await dio.post(

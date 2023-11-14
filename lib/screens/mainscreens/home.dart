@@ -72,6 +72,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:lottie/lottie.dart';
 import 'package:rescue/controller/location_controller.dart';
 
 import '../../bloc/weather_bloc_bloc.dart';
@@ -141,7 +142,12 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return GetBuilder<LocationController>(builder: ((controller) {
       return controller.isLoading.value
-          ? Center(child: CircularProgressIndicator())
+          ? Center(
+              child: LottieBuilder.asset(
+              'assets/images/loading.json',
+              width: 700,
+              height: 700,
+            ))
           : BlocProvider<WeatherBlocBloc>(
               create: (context) => WeatherBlocBloc()
                 ..add(FetchWeather([
